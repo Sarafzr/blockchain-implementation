@@ -134,18 +134,6 @@ If you're using a virtual environment, ensure it's activated before installing p
 
 **Solution**: This has been fixed. The code now uses `blockchain.chain` instead of `blockchain.chaindb.chain`. If you see this error, make sure you have the latest version of `blockchain/block.py` and `blockchain/pow_block.py`.
 
-### Issue: `TypeError: Block.__init__() got an unexpected keyword argument 'include_merkle_root'`
-
-**Status**: **Known Issue** - The test `tests.hash.HashTest.test_blockchain_hash` passes `include_merkle_root=False` to the `Block.__init__()` method, but the current implementation may not fully handle this parameter correctly.
-
-**Details**: 
-- The `Block.__init__()` method accepts the `include_merkle_root` parameter (defaults to `True`)
-- When `include_merkle_root=False`, the merkle root should not be calculated
-- The test expects a specific hash when the merkle root is excluded
-- This may cause the `test_blockchain_hash` test to fail with a hash mismatch
-
-**Workaround**: The test may fail, but other functionality should work correctly. The `include_merkle_root` parameter is primarily used for testing block hashing without Merkle root computation.
-
 ### Issue: `error: externally-managed-environment` when installing packages
 
 **Solution**: On macOS with Homebrew Python, you need to use a virtual environment:
