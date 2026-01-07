@@ -159,7 +159,7 @@ pip install -r requirements.txt
 
 **Solution**: If you see database lock errors, make sure no other Python processes are accessing the database. Delete the lock file:
 ```bash
-rm database/blockchain.db.lock
+rm database/chain.db.lock
 ```
 
 ## Project Components

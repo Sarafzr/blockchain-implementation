@@ -52,8 +52,10 @@ class Block(ABC, persistent.Persistent):
         self.seal_data = seal_data
         if target is None:
             self.target = self.calculate_appropriate_target()
-        if merkle is None:
+        if include_merkle_root:
             self.merkle = self.calculate_merkle_root()
+        else:
+            self.merkle=sha256_2_string("".join(map(str, self.transactions)))
         self.hash = self.calculate_hash()  # keep track of hash for caching purposes
 
     def calculate_merkle_root(self):
